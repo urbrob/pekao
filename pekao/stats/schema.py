@@ -1,6 +1,6 @@
 from graphene_django import DjangoObjectType
 from django.db.models.functions import TruncMonth, TruncDay
-from stats.models import User, Terminal, Payment, Raport, Employer
+from stats.models import User, Terminal, Payment, Raport, Employer, Employee, Shift
 from django.db.models import Count, Sum
 from collections import defaultdict
 from datetime import datetime
@@ -11,6 +11,15 @@ import graphene
 class EmployerNode(DjangoObjectType):
     class Meta:
         model = Employer
+
+class EmployeeNode(DjangoObjectType):
+    class Meta:
+        model = Employee
+
+
+class ShiftNode(DjangoObjectType):
+    class Meta:
+        model = Shift
 
 
 class TerminalNode(DjangoObjectType):
@@ -76,6 +85,63 @@ class MonthStats(graphene.ObjectType):
         return days
 
 
+class AddEmployee(graphene.Mutation):
+    class Arguments:
+        employer = graphene.Int()
+        name = graphene.String()
+        surname = graphene.String()
+
+    employee = graphene.Field(EmployeeNode)
+
+    def mutate(self, info, **kwargs):
+        return AddEmployee(Employee.objects.create(**kwargs))
+
+
+class DeleteEmployee(graphene.Mutation):
+    class Arguments:
+        employee = graphene.Int()
+
+    status = graphene.String()
+
+    def mutate(self, info, **kwargs):
+        Employee.objects.filter(id=kwargs['employee'])
+        return DeleteEmployee(status='OK')
+
+
+class DayOfWeekEnum(graphene.Enum):
+    MONDAY = Shift.MONDAY
+    TUESDAY = Shift.TUESDAY
+    WEDNESDAY = Shift.WEDNESDAY
+    THURSDAY = Shift.THURSDAY
+    FRIDAY = Shift.FRIDAY
+    SATURDAY = Shift.SATURDAY
+    SUNDAY = Shift.SUNDAY
+
+
+class AddShift(graphene.Mutation):
+    class Arguments:
+        employee = graphene.Int()
+        start_at = graphene.String()
+        end_at = graphene.String()
+        manager = graphene.Boolean()
+        day_of_week = DayOfWeekEnum()
+
+    shift = graphene.Field(ShiftNode)
+
+    def mutate(self, info, **kwargs):
+        return AddShift(Shift.objects.create(**kwargs))
+
+class DeleteShift(graphene.Mutation):
+    class Arguments:
+        shift = graphene.Int()
+
+    status = graphene.String()
+
+    def mutate(self, info, **kwargs):
+        Shift.objects.filter(id=kwargs['shift'])
+        return DeleteShift(status='OK')
+
+
 class StatsNode(graphene.ObjectType):
     months = graphene.List(MonthStats)
 
@@ -85,17 +151,25 @@ class StatsNode(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_raport = CreateRaportMutation.Field()
+    add_employee = AddEmployee.Field()
+    delete_employee = DeleteEmployee.Field()
+    add_shift = AddShift.Field()
+    delete_shift = DeleteShift.Field()
 
 
 class Query(graphene.ObjectType):
     raports = graphene.List(RaportNode)
     statistics = graphene.Field(StatsNode)
     payment = graphene.Field(PaymentNode, id=graphene.Int())
+    my_staff = graphene.List(EmployeeNode)
 
     def resolve_payments(self, **kwargs):
         if kwargs['id'] is not None:
             return Payment.objects.get(pk=kwargs['id'])
         return 0
+
+    def resolve_my_staff(self, info, **kwargs):
+        return Employee.objects.filter(employer__owner=info.context.user)
 
     def resolve_raports(self, info):
         return Raport.objects.filter(employer__owner=info.context.user)
