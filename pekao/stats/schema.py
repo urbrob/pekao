@@ -16,7 +16,15 @@ class PaymentNode(DjangoObjectType):
     class Meta:
         model = Payment
 
+class CreateRaportMutation(graphene.Mutation):
+    class Arguments:
+        employer = graphene.Int()
 
+    status = graphene.String()
+
+     def mutate(self, info, **kwargs):
+        # generateraport(kwargs['employer'])
+        return CreateRaportMutation(status='OK')
 
 class Mutation(graphene.ObjectType):
     pass
