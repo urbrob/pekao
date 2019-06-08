@@ -7,7 +7,6 @@ from datetime import datetime
 import calendar
 import graphene
 import json
-from datetime import datetime
 import datetime as dt
 
 
@@ -63,6 +62,29 @@ class DayStats(graphene.ObjectType):
 
     def resolve_count(self, info):
         return self['count']
+
+
+class HeatPointNode(graphene.ObjectType):
+    employer_loc = graphene.Float()
+    employer_name = graphene.String()
+    trans_score = graphene.Int()
+    employer_lat = graphene.Float()
+    employer_long = graphene.Float()
+
+    def resolve_employer_loc(self, info):
+        return self['employer_loc']
+
+    def resolve_employer_name(self, info):
+        return self['employer_name']
+
+    def resolve_trans_score(self, info):
+        return self['trans_score']
+
+    def resolve_employer_lat(self, info):
+        return self['employer_lat']
+
+    def resolve_employer_long(self, info):
+        return self['employer_long']
 
 
 class MonthStats(graphene.ObjectType):
@@ -134,6 +156,7 @@ class AddShift(graphene.Mutation):
     def mutate(self, info, **kwargs):
         return AddShift(Shift.objects.create(**kwargs))
 
+
 class DeleteShift(graphene.Mutation):
     class Arguments:
         shift = graphene.Int()
@@ -163,7 +186,7 @@ class Mutation(graphene.ObjectType):
 class Query(graphene.ObjectType):
     raports = graphene.List(RaportNode)
     statistics = graphene.Field(StatsNode)
-    payment_heatmap_points = graphene.Field(StatsNode)
+    payment_heatmap_points = graphene.List(HeatPointNode)
     my_staff = graphene.List(EmployeeNode)
 
     def resolve_payment_heatmap_points(self, info, **kwargs):
@@ -174,13 +197,12 @@ class Query(graphene.ObjectType):
             point = {
                 "employer_loc": loc.location,
                 "employer_name": loc.name,
-                "trans_score": Payment.objects.filter(terminal__employer=loc, created_at__lt=now, created_at__gt=month_ago),
+                "trans_score": Payment.objects.filter(terminal__employer=loc, created_at__lt=now, created_at__gt=month_ago).count(),
                 "employer_lat": loc.lat,
                 "employer_long": loc.lon
             }
             points_map.append(point)
-        import pdb; pdb.set_trace()
-        return json.dumps(points_map)
+        return points_map
 
     def resolve_my_staff(self, info, **kwargs):
         return Employee.objects.filter(employer__owner=info.context.user)
