@@ -6,9 +6,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     paper: {
-        maxWidth: 936,
+        maxWidth: 980,
         margin: 'auto',
         overflow: 'hidden',
+        marginTop: "5%",
+        flex: 1,
+        padding: '20px 36px 0',
+        background: '#eaeff1',
     },
     searchBar: {
         borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
