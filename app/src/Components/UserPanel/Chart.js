@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import Paper from '@material-ui/core/Paper'
 
@@ -34,6 +34,7 @@ export default class Chart extends PureComponent {
     render() {
         return (
             <Paper style={{marginRight: "5%", marginLeft: "5%", marginTop: '5%'}}>
+                <h4>Chart title</h4>
                 <BarChart
                     width={500}
                     height={300}

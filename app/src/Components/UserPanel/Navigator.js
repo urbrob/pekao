@@ -27,9 +27,9 @@ const categories = [
             {id: 'Statistics', icon: <BarChart/>, link: '/UserPanel/Statistics'},
             {id: 'Consumers', icon: <PeopleIcon/>, link: '/UserPanel/Consumers'},
             {id: 'Impact', icon: <FlashOn/>, link: '/UserPanel/Impact'},
-            {id: 'Summary', icon: <PlaylistAddCheck/>, link: '/UserPanel/Summary'},
             {id: 'Your staff', icon: <SupervisedUserCircle/>, link: '/UserPanel/Staff'},
-            {id: 'Raports', icon: <Assignment/>, link: '/UserPanel/Raports'},
+            {id: 'Summary', icon: <PlaylistAddCheck/>, link: '/UserPanel/Summary'},
+            {id: 'Reports', icon: <Assignment/>, link: '/UserPanel/Reports'},
 
         ],
     },
@@ -110,7 +110,7 @@ function Navigator(props) {
                 <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
                     User panel
                 </ListItem>
-                <Link to={'/user'}>
+                <Link to={'/UserPanel'}>
                 <ListItem className={clsx(classes.item, classes.itemCategory)}>
                     <ListItemIcon className={classes.itemIcon}>
                         <HomeIcon/>
