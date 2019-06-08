@@ -1,12 +1,7 @@
 from graphene_django import DjangoObjectType
 import graphene
-from stats.models import User, Terminal, Payment, Raport
-from django.db.models.lookups import MonthTransform as Month, DayTransfrom
+from stats.models import User, Terminal, Payment, Raport, Employer
 
-Item.objects.annotate(
-    year=Year('date'),
-    month=Month('date'),
-).values('year', 'month').annotate(count=Count('pk'))
 
 class EmployerNode(DjangoObjectType):
     class Meta:
@@ -22,20 +17,30 @@ class PaymentNode(DjangoObjectType):
     class Meta:
         model = Payment
 
+class CreateRaportMutation(graphene.Mutation):
+    class Arguments:
+        employer = graphene.Int()
+    status = graphene.String()
+
+    def mutate(self, info, **kwargs):
+        # generateraport(kwargs['employer'])
+        return CreateRaportMutation(status='OK')
 
 class RaportNode(DjangoObjectType):
     class Meta:
         model = Raport
 
+class StatsType(graphene.ObjectType):
+    pass
+
 
 class Mutation(graphene.ObjectType):
-    pass
+    create_raport = CreateRaportMutation.Field()
 
 
 class Query(graphene.ObjectType):
     raports = graphene.List(RaportNode)
     statistics = graphene.Field(StatsType)
-
 
     def resolve_raports(self, info):
         return Raport.objects.filter(employer__owner=info.context.user)
