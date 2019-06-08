@@ -5,10 +5,9 @@ from users.models import User
 class Employer(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=False, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
-    localization = models.CharField(max_length=100)
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=255)
     coordinates = models.CharField(max_length=255)
     branch_of_business = models.CharField(max_length=255)
 
@@ -30,7 +29,7 @@ class Raport(models.Model):
 
 class Terminal(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=False, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
@@ -46,7 +45,7 @@ class Payment(models.Model):
     location = models.CharField(max_length=50)
     coordinates = models.CharField(max_length=255)
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=False, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
