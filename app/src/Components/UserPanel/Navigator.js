@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -18,25 +18,26 @@ import Assignment from '@material-ui/icons/Assignment';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 import FlashOn from '@material-ui/icons/FlashOn';
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
+import {Link} from 'react-router-dom';
 
 const categories = [
     {
         id: 'Your business',
         children: [
-            { id: 'Statistics', icon: <BarChart />},
-            { id: 'Consumers', icon: <PeopleIcon /> },
-            { id: 'Impact', icon: <FlashOn /> },
-            { id: 'Summary', icon: <PlaylistAddCheck /> },
-            { id: 'Your staff', icon: <SupervisedUserCircle /> },
-            { id: 'Raports', icon: <Assignment /> },
+            {id: 'Statistics', icon: <BarChart/>, link: '/UserPanel/Statistics'},
+            {id: 'Consumers', icon: <PeopleIcon/>, link: '/UserPanel/Consumers'},
+            {id: 'Impact', icon: <FlashOn/>, link: '/UserPanel/Impact'},
+            {id: 'Summary', icon: <PlaylistAddCheck/>, link: '/UserPanel/Summary'},
+            {id: 'Your staff', icon: <SupervisedUserCircle/>, link: '/UserPanel/Staff'},
+            {id: 'Raports', icon: <Assignment/>, link: '/UserPanel/Raports'},
 
         ],
     },
     {
         id: 'Settings',
         children: [
-            { id: 'Your plan', icon: <CheckBoxIcon /> },
-            { id: 'User Settings', icon: <SettingsIcon /> },
+            {id: 'Your plan', icon: <CheckBoxIcon/>, link: '/UserPanel/Plan'},
+            {id: 'User Settings', icon: <SettingsIcon/>, link: '/UserPanel/Settings'},
         ],
     },
 ];
@@ -101,17 +102,18 @@ const styles = theme => ({
 });
 
 function Navigator(props) {
-    const { classes, ...other } = props;
+    const {classes, ...other} = props;
 
     return (
         <Drawer variant="permanent" {...other}>
             <List disablePadding>
                 <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
-                   User panel
+                    User panel
                 </ListItem>
+                <Link to={'/user'}>
                 <ListItem className={clsx(classes.item, classes.itemCategory)}>
                     <ListItemIcon className={classes.itemIcon}>
-                        <HomeIcon />
+                        <HomeIcon/>
                     </ListItemIcon>
                     <ListItemText
                         classes={{
@@ -121,7 +123,8 @@ function Navigator(props) {
                         Home view
                     </ListItemText>
                 </ListItem>
-                {categories.map(({ id, children }) => (
+                </Link>
+                {categories.map(({id, children}) => (
                     <React.Fragment key={id}>
                         <ListItem className={classes.categoryHeader}>
                             <ListItemText
@@ -132,33 +135,37 @@ function Navigator(props) {
                                 {id}
                             </ListItemText>
                         </ListItem>
-                        {children.map(({ id: childId, icon, active }) => (
-                            <ListItem
-                                key={childId}
-                                button
-                                className={clsx(classes.item, active && classes.itemActiveItem)}
-                            >
-                                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
-                                <ListItemText
-                                    classes={{
-                                        primary: classes.itemPrimary,
-                                    }}
+                        {children.map(({id: childId, icon, active, link}) => (
+                            <Link to={link}>
+                                <ListItem
+                                    key={childId}
+                                    button
+                                    className={clsx(classes.item, active && classes.itemActiveItem)}
                                 >
-                                    {childId}
-                                </ListItemText>
-                            </ListItem>
+                                    <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
+                                    <ListItemText
+                                        classes={{
+                                            primary: classes.itemPrimary,
+                                        }}
+                                    >
+                                        {childId}
+                                    </ListItemText>
+                                </ListItem>
+                            </Link>
                         ))}
-                        <Divider className={classes.divider} />
+                        <Divider className={classes.divider}/>
                     </React.Fragment>
                 ))}
-                <ListItem className={classes.itemLogout} >
+                <Link to={'/logout'}>
+                <ListItem className={classes.itemLogout}>
                     <ListItemIcon className={classes.itemIcon}>
                         <PowerSettingsNewIcon fontSize="large"/>
                     </ListItemIcon>
-                    <ListItem >
+                    <ListItem>
                         Logout
                     </ListItem>
                 </ListItem>
+                </Link>
 
             </List>
         </Drawer>
