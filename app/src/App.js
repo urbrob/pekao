@@ -11,6 +11,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import MainUserPanel from "./pages/MainUserPanel";
 
 
 export const client = new ApolloClient({
@@ -27,6 +28,7 @@ function App() {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/user" component={MainUserPanel} />
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/404" component={NotFound} />
@@ -37,6 +39,7 @@ function App() {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/user" component={MainUserPanel} />
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/404" component={NotFound} />
