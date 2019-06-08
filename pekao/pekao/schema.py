@@ -3,7 +3,7 @@ import graphql_jwt
 import users.schema
 import stats.schema
 
-class Query(graphene.ObjectType):
+class Query(stats.schema.Query):
     test = graphene.String()
 
     def resolve_test(self):
