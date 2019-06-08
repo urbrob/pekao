@@ -2,6 +2,7 @@ from graphene_django import DjangoObjectType
 import graphene
 from stats.models import User, Terminal, Payment, Raport, Employer
 
+
 class EmployerNode(DjangoObjectType):
     class Meta:
         model = Employer
@@ -16,6 +17,7 @@ class PaymentNode(DjangoObjectType):
     class Meta:
         model = Payment
 
+
 class CreateRaportMutation(graphene.Mutation):
     class Arguments:
         employer = graphene.Int()
@@ -25,9 +27,11 @@ class CreateRaportMutation(graphene.Mutation):
         # generateraport(kwargs['employer'])
         return CreateRaportMutation(status='OK')
 
+
 class RaportNode(DjangoObjectType):
     class Meta:
         model = Raport
+
 
 class Mutation(graphene.ObjectType):
     create_raport = CreateRaportMutation.Field()
