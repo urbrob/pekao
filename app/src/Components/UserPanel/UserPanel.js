@@ -7,6 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
 import Header from './Header';
 import MainContent from "./MainContent";
+import StatisticsContent from "./StatisticsContent";
 
 
 let theme = createMuiTheme({
@@ -156,7 +157,10 @@ class UserPanel extends React.Component {
                   return(
                       <MainContent/>
                       );
-
+              case 'stats':
+                  return(
+                      <StatisticsContent/>
+                  );
               default:
                   return(
                       <MainContent/>
