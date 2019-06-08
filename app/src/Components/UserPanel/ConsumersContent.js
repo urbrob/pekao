@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import ConsumerLineChart from "./ConsumerLineChart"
 
 
 
@@ -23,7 +24,7 @@ function StatiscticsContent(props) {
             <div className={classes.root}>
                 <Grid container direction="row">
                     <Grid item>
-
+                        <ConsumerLineChart/>
                     </Grid>
                 </Grid>
 

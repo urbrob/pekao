@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Chart from "./Chart"
+import StatisticBarChart from "./StatisticBarChart"
 
 
 const styles = theme => ({
@@ -22,10 +22,10 @@ function StatiscticsContent(props) {
 
             <div className={classes.root}>
                 <Grid container direction="row">
-                    <Chart/>
-                    <Chart/>
-                    <Chart/>
-                    <Chart/>
+                    <StatisticBarChart/>
+                    <StatisticBarChart/>
+                    <StatisticBarChart/>
+                    <StatisticBarChart/>
                 </Grid>
 
             </div>
