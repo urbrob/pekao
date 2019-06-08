@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import UserPanel from '../Components/UserPanel/UserPanel'
-import Content from '../Components/UserPanel/MainContent'
+import UserPanel from '../../Components/UserPanel/UserPanel'
 
 export class MainUserPanel extends Component {
     render() {
         return (
             <React.Fragment>
-                <UserPanel/>
-                <Content/>
+                <UserPanel>
+
+                </UserPanel>
             </React.Fragment>
 
         );
