@@ -9,10 +9,10 @@ class Employer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
     location = models.CharField(max_length=255)
-	# change coordinates to lat = models.FloatField() lon = models.FloatField()
-    coordinates = models.CharField(max_length=255)
+    lat = models.FloatField()
+    lon = models.FloatField()
     branch_of_business = models.CharField(max_length=255)
-    
+
     def __str__(self):
         return self.name
 
@@ -76,8 +76,8 @@ class Payment(models.Model):
     region = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
-    coordinates = models.CharField(max_length=255)
-	# change coordinates to lat = models.FloatField() lon = models.FloatField()
+    lat = models.FloatField()
+    lon = models.FloatField()
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
