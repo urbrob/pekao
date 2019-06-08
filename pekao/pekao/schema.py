@@ -3,10 +3,11 @@ import graphql_jwt
 import users.schema
 import stats.schema
 
+
 class Query(stats.schema.Query):
     test = graphene.String()
 
-    def resolve_test(self):
+    def resolve_test(self, info):
         return None
 
 
