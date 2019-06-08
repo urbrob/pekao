@@ -122,8 +122,10 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 # Sendgrid
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = ''
 EMAIL_BACKEND = "sgbackend.SendGridBackend"
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

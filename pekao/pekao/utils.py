@@ -16,6 +16,6 @@ def send_sms(number, message):
     )
 
 def send_notification(message, send_email, phone_number=None):
-    send_mail('P4B - Strange activity in your shop', message, 'notification@p4b.com', [send_email], fail_silently=False)
+    send_mail('P4B - Strange activity in your shop', message, 'johny10101@gmail.com', [send_email], fail_silently=False)
     if phone_number:
         send_sms(phone_number, message)
