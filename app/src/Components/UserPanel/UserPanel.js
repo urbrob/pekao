@@ -6,7 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
 import Header from './Header';
-import Content from "./MainContent";
+import MainContent from "./MainContent";
+
 
 let theme = createMuiTheme({
     typography: {
@@ -176,7 +177,7 @@ class UserPanel extends React.Component {
                     <div className={classes.appContent}>
                         <Header onDrawerToggle={this.handleDrawerToggle} />
                         <main className={classes.mainContent}>
-                            <Content/>
+                            <MainContent/>
                         </main>
                     </div>
                 </div>

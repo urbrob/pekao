@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.contrib.gis.db import models as mapmodel
 
 
 class Employer(models.Model):
@@ -8,6 +9,7 @@ class Employer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
     location = models.CharField(max_length=255)
+	# change coordinates to lat = models.FloatField() lon = models.FloatField()
     coordinates = models.CharField(max_length=255)
     branch_of_business = models.CharField(max_length=255)
     
@@ -49,7 +51,7 @@ class Shift(models.Model):
 class Raport(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
     customers = models.BigIntegerField()
-    new_customers =  models.IntegerField()
+    new_customers = models.IntegerField()
     regular_customers = models.IntegerField()
     new_regular_customers = models.IntegerField()
     profit = models.IntegerField()
@@ -68,13 +70,14 @@ class Terminal(models.Model):
 
 
 class Payment(models.Model):
-    card_namber = models.CharField(max_length=25)
+    card_number = models.CharField(max_length=25)
     value = models.FloatField()
     method = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     coordinates = models.CharField(max_length=255)
+	# change coordinates to lat = models.FloatField() lon = models.FloatField()
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
