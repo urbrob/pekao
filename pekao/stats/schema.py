@@ -1,6 +1,11 @@
+import pdb
+
 from graphene_django import DjangoObjectType
 import graphene
 from stats.models import User, Terminal, Payment, Raport, Employer
+import json
+from datetime import datetime
+import datetime as dt
 
 
 class EmployerNode(DjangoObjectType):
@@ -43,9 +48,29 @@ class Query(graphene.ObjectType):
     payment = graphene.Field(PaymentNode, id=graphene.Int())
 
     def resolve_payments(self, **kwargs):
+        now = datetime.now()
+        month_ago = now - dt.timedelta(weeks=4)
+
+        if kwargs['lat'] is not None and kwargs['lon']:
+            return Payment.objects.filter(lat__iexact=kwargs['lat'], lon_iexact=kwargs['lon'], created_at__lt=now, created_at__gt=month_ago).count()
+        return None
+
+    def resolve_payment_heatmap_points(self, **kwargs):
+        points_map = []
+        # change model to lat, lon instead of coordinates field
         if kwargs['id'] is not None:
-            return Payment.objects.get(pk=kwargs['id'])
-        return 0
+            locations = Employer.objects.all()
+            for loc in locations:
+                point = {
+                    "employer_loc": loc.location,
+                    "employer_name": loc.name,
+                    "trans_score": self.resolve_payments(location=loc),
+                    "employer_lat": loc.lat,
+                    "employer_long": loc.lon
+                }
+                points_map.append(point)
+            pdb.set_trace()
+            return json.dumps(points_map)
 
     def resolve_raports(self, info):
         return Raport.objects.filter(employer__owner=info.context.user)
