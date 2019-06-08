@@ -1,35 +1,53 @@
 from django.db import models
 from users.models import User
 
+
 class Employer(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    partner_id = models.IntegerField()
     name = models.CharField(max_length=100)
-    modified_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
     localization = models.CharField(max_length=100)
+    location = models.CharField(max_length=50)
+    coordinates = models.CharField(max_length=255)
+    branch_of_business = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
 
-class Terminal(models.Model):
-    terminal_id = models.IntegerField()
+class Raport(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    modified_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    customers = models.BigIntegerField()
+    new_customers =  models.IntegerField()
+    regular_customers = models.IntegerField()
+    new_regular_customers = models.IntegerField()
+    profit = models.IntegerField()
+    transaction_counts = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
+
+
+class Terminal(models.Model):
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
         return "Terminal: {}".format(self.terminal_id)
 
 
 class Payment(models.Model):
-    payment_id = models.IntegerField()
     card_namber = models.CharField(max_length=25)
-    transaction_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     value = models.FloatField()
     method = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
+    coordinates = models.CharField(max_length=255)
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
         return "Payment: {}".format(self.payment_id)
