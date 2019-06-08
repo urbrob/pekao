@@ -138,11 +138,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
     },
-    mainContent: {
-        flex: 1,
-        padding: '48px 36px 0',
-        background: '#eaeff1',
-    },
+
 };
 
 class UserPanel extends React.Component {
@@ -153,10 +149,25 @@ class UserPanel extends React.Component {
     handleDrawerToggle = () => {
         this.setState(state => ({ mobileOpen: !state.mobileOpen }));
     };
+    renderContent = () =>{
+          const {content} = this.props;
+          switch(content){
+              case 'main':
+                  return(
+                      <MainContent/>
+                      );
+
+              default:
+                  return(
+                      <MainContent/>
+                  )
+
+          }
+
+    };
 
     render() {
         const { classes } = this.props;
-
         return (
             <ThemeProvider theme={theme}>
                 <div className={classes.root}>
@@ -176,8 +187,10 @@ class UserPanel extends React.Component {
                     </nav>
                     <div className={classes.appContent}>
                         <Header onDrawerToggle={this.handleDrawerToggle} />
-                        <main className={classes.mainContent}>
-                            <MainContent/>
+                        <main  >
+                            {
+                              this.renderContent()
+                            }
                         </main>
                     </div>
                 </div>
