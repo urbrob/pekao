@@ -5,8 +5,8 @@ export class MainUserPanel extends Component {
     render() {
         return (
             <React.Fragment>
-                <UserPanel>
-
+                <UserPanel
+                    content={'main'}>
                 </UserPanel>
             </React.Fragment>
 
