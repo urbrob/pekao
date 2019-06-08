@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import StaffTable from "./StaffTable";
 
 
 
 const styles = theme => ({
     paper: {
         marginTop: "2%",
-        marginLeft: "5%",
+        marginLeft: "20%",
         marginRight: "5%",
         marginBottom: "5%",
     },
@@ -22,8 +23,8 @@ function StaffContent(props) {
 
             <div className={classes.root}>
                 <Grid container direction="row">
-                    <Grid item>
-
+                    <Grid item className={classes.paper}>
+                        <StaffTable/>
                     </Grid>
                 </Grid>
 

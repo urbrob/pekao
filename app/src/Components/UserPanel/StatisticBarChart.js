@@ -28,7 +28,7 @@ const data = [
     },
 ];
 
-export default class Chart extends PureComponent {
+export default class StatisticBarChart extends PureComponent {
 
 
     render() {
