@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Chart from "./Chart"
+
 
 
 const styles = theme => ({
@@ -14,7 +14,7 @@ const styles = theme => ({
     },
 });
 
-function StatiscticsContent(props) {
+function ImpactContent(props) {
     const { classes } = props;
 
     return (
@@ -22,10 +22,9 @@ function StatiscticsContent(props) {
 
             <div className={classes.root}>
                 <Grid container direction="row">
-                    <Chart/>
-                    <Chart/>
-                    <Chart/>
-                    <Chart/>
+                    <Grid item>
+
+                    </Grid>
                 </Grid>
 
             </div>
@@ -36,8 +35,8 @@ function StatiscticsContent(props) {
     );
 }
 
-StatiscticsContent.propTypes = {
+ImpactContent.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(StatiscticsContent);
+export default withStyles(styles)(ImpactContent);

@@ -43,7 +43,7 @@ const styles = theme => ({
 
 function Header(props) {
     const {classes, onDrawerToggle} = props;
-
+    const { prompt } = props;
     return (
         <React.Fragment>
             <AppBar color="primary" position="sticky" elevation={0}>
@@ -94,7 +94,7 @@ function Header(props) {
                     <Grid container alignItems="center" spacing={1}>
                         <Grid item xs>
                             <Typography style={{paddingBottom: "1.4%"}} color="inherit" variant="h5" component="h1">
-                                Welcome Username !
+                                { prompt }
                             </Typography>
                         </Grid>
 

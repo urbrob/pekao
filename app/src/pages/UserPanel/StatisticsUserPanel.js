@@ -6,7 +6,9 @@ export class StatisticsUserPanel extends Component {
         return (
             <React.Fragment>
                 <UserPanel
-                    content={'stats'}>
+                    content={'stats'}
+                    prompt={'See basic sales statistics'}
+                >
                 </UserPanel>
             </React.Fragment>
 

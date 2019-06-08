@@ -8,7 +8,13 @@ import Navigator from './Navigator';
 import Header from './Header';
 import MainContent from "./MainContent";
 import StatisticsContent from "./StatisticsContent";
-
+import ConsumerContent from "./ConsumersContent";
+import ImpactContent from "./ImpactContent";
+import SummaryContent from "./SummaryContent";
+import StaffContent from "./StaffContent";
+import ReportsContent from "./ReportsContent";
+import SettingsContent from "./SettingsContent";
+import PlanContent from "./PlanContent";
 
 let theme = createMuiTheme({
     typography: {
@@ -161,6 +167,34 @@ class UserPanel extends React.Component {
                   return(
                       <StatisticsContent/>
                   );
+              case 'consumer':
+                  return(
+                    < ConsumerContent />
+                  );
+              case 'impact':
+                  return(
+                      <ImpactContent/>
+                  );
+              case 'summary':
+                  return(
+                      <SummaryContent/>
+                  );
+              case 'staff':
+                  return(
+                      <StaffContent/>
+                  );
+              case 'reports':
+                  return(
+                      <ReportsContent/>
+                  );
+              case 'settings':
+                  return(
+                      <SettingsContent/>
+                  );
+              case 'plan':
+                  return(
+                      <PlanContent/>
+                  );
               default:
                   return(
                       <MainContent/>
@@ -172,6 +206,7 @@ class UserPanel extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const { prompt } = this.props;
         return (
             <ThemeProvider theme={theme}>
                 <div className={classes.root}>
@@ -190,7 +225,7 @@ class UserPanel extends React.Component {
                         </Hidden>
                     </nav>
                     <div className={classes.appContent}>
-                        <Header onDrawerToggle={this.handleDrawerToggle} />
+                        <Header prompt={prompt} onDrawerToggle={this.handleDrawerToggle} />
                         <main  >
                             {
                               this.renderContent()
