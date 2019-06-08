@@ -34,15 +34,6 @@ function App() {
                     </Switch>
                 </Router>
             ) : (
-                /*
-              <Router>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/login" component={Login}/>
-                  <Route exact path="/register" component={Register}/>
-                  <Redirect to="/login" />
-                </Switch>
-              </Router>*/
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
