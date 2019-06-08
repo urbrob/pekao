@@ -207,7 +207,6 @@ class Query(graphene.ObjectType):
     statistics = graphene.Field(StatsNode)
     payment_heatmap_points = graphene.List(HeatPointNode)
     my_staff = graphene.List(EmployeeNode)
-
     payment = graphene.Field(PaymentNode, id=graphene.Int())
     customer_count = graphene.Field(CustomersCount, employer_id=graphene.Int())
     regular_customer = graphene.Field(RegularCustomer, employer_id=graphene.Int(), card_namber=graphene.String())
