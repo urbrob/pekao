@@ -1,29 +1,35 @@
-from graphene_django import DjangoObjectType
+
 from users.models import User
-from django.db.models import Q
+from graphene_django import DjangoObjectType
+from django.contrib.auth import get_user_model
 import graphene
+import graphql_jwt
+from graphql_jwt.shortcuts import get_token
 
 
 class UserNode(DjangoObjectType):
     class Meta:
         model = User
+        only_fields = ('id', 'email', 'username')
 
 
-class CreateUserMutation(graphene.Mutation):
+class CreateUser(graphene.Mutation):
+    token = graphene.String()
+
     class Arguments:
-        username = graphene.String()
-        password = graphene.String()
-        email = graphene.String()
+        username = graphene.String(required=True)
+        password = graphene.String(required=True)
+        email = graphene.String(required=True)
 
-    user = graphene.Field(UserNode)
-    error = graphene.String()
-
-    def mutate(self, info, **kwargs):
-        if User.objects.filter(Q(username=kwargs['username']) | Q(email=kwargs['email'])).exists():
-            return CreateUserMutation(error='Username or email is already taken')
-        user = User.objects.create_user(kwargs['username'], kwargs['email'], kwargs['password'])
-        return CreateUserMutation(user=user)
+    def mutate(self, info, username, password, email):
+        user = User(
+            username=username,
+            email=email,
+        )
+        user.set_password(password)
+        user.save()
+        return CreateUser(token=get_token(user))
 
 
 class Mutation(graphene.ObjectType):
-    create_user = CreateUserMutation.Field()
+    create_user = CreateUser.Field()

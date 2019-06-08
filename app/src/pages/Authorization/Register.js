@@ -76,7 +76,7 @@ export class Register extends Component {
         this.props.mutate({
             variables: {username: this.state.username, password: this.state.password, email: this.state.email}
         }).then(function(result) {
-            localStorage.setItem('token', result.data.createUserMutation.token);
+            localStorage.setItem('token', result.data.createUser.token);
             window.location.href = "/user"
         }).catch(function(err) {
             alert(err);
