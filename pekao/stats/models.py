@@ -1,56 +1,53 @@
 from django.db import models
 from users.models import User
 
-<<<<<<< HEAD
-<<<<<<< master
-# Create your models here.
-=======
+
 class Employer(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    api_partner_id = models.IntegerField()
-=======
-class Employer(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    partner_id = models.IntegerField()
->>>>>>> a39eaa8516a6620feed969b72c7b898bf9786ceb
     name = models.CharField(max_length=100)
-    modified_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
     localization = models.CharField(max_length=100)
+    location = models.CharField(max_length=50)
+    coordinates = models.CharField(max_length=255)
+    branch_of_business = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
 
-class Terminal(models.Model):
-<<<<<<< HEAD
-    api_terminal_id = models.IntegerField()
-=======
-    terminal_id = models.IntegerField()
->>>>>>> a39eaa8516a6620feed969b72c7b898bf9786ceb
+class Raport(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    modified_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    customers = models.BigIntegerField()
+    new_customers =  models.IntegerField()
+    regular_customers = models.IntegerField()
+    new_regular_customers = models.IntegerField()
+    profit = models.IntegerField()
+    transaction_counts = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
+
+
+class Terminal(models.Model):
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
         return "Terminal: {}".format(self.terminal_id)
 
 
 class Payment(models.Model):
-<<<<<<< HEAD
-    api_payment_id = models.IntegerField()
-=======
-    payment_id = models.IntegerField()
->>>>>>> a39eaa8516a6620feed969b72c7b898bf9786ceb
     card_namber = models.CharField(max_length=25)
-    transaction_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     value = models.FloatField()
     method = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
+    coordinates = models.CharField(max_length=255)
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
         return "Payment: {}".format(self.payment_id)
-<<<<<<< HEAD
->>>>>>> local
-=======
->>>>>>> a39eaa8516a6620feed969b72c7b898bf9786ceb
