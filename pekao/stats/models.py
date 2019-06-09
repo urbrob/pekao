@@ -6,12 +6,13 @@ from django.contrib.gis.db import models as mapmodel
 class Employer(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    modified_at = models.DateTimeField(auto_now=True, editable=False)
+    created_at = models.DateTimeField()
+    modified_at = models.DateTimeField()
     location = models.CharField(max_length=255)
     lat = models.FloatField()
     lon = models.FloatField()
     branch_of_business = models.CharField(max_length=255)
+    eid = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
@@ -62,8 +63,9 @@ class Raport(models.Model):
 
 class Terminal(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    modified_at = models.DateTimeField(auto_now=True, editable=False)
+    eid = models.CharField(max_length=50)
+    created_at = models.DateTimeField()
+    modified_at = models.DateTimeField()
 
     def __str__(self):
         return "Terminal: {}".format(self.id)
@@ -72,15 +74,15 @@ class Terminal(models.Model):
 class Payment(models.Model):
     card_number = models.CharField(max_length=25)
     value = models.FloatField()
-    method = models.CharField(max_length=50)
+    #method = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     lat = models.FloatField()
     lon = models.FloatField()
     terminal = models.ForeignKey(Terminal, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    modified_at = models.DateTimeField(auto_now=True, editable=False)
+    created_at = models.DateTimeField()
+    modified_at = models.DateTimeField()
 
     def __str__(self):
         return "Payment: {}".format(self.id)
