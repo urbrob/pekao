@@ -10,7 +10,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import {withStyles} from '@material-ui/core/styles';
+import {createMuiTheme, MuiThemeProvider, withStyles} from '@material-ui/core/styles';
+import red from "@material-ui/core/colors/red";
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -41,10 +42,18 @@ const styles = theme => ({
     },
 });
 
+const butTheme = createMuiTheme({
+    palette: {
+        primary: red,
+        secondary: red,
+    },
+});
+
 function Header(props) {
     const {classes, onDrawerToggle} = props;
     const { prompt } = props;
     return (
+        <MuiThemeProvider theme={butTheme}>
         <React.Fragment>
             <AppBar color="primary" position="sticky" elevation={0}>
                 <Toolbar>
@@ -102,6 +111,7 @@ function Header(props) {
                 </Toolbar>
             </AppBar>
         </React.Fragment>
+        </MuiThemeProvider>
     );
 }
 
