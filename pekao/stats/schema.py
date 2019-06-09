@@ -146,10 +146,10 @@ class MonthStats(graphene.ObjectType):
         return self['count']
 
     def resolve_days(self, info):
-        days = [{'name': month, 'count': 0, 'amount': 0} for month in range(1, 31)]
+        days = [{'name': day, 'count': 0, 'amount': 0} for day in range(0, 32)]
         for payment in self['days']:
-            days[payment.created_at.month]['count'] += 1
-            days[payment.created_at.month]['amount'] += payment.value
+            days[payment.created_at.day]['count'] += 1
+            days[payment.created_at.day]['amount'] += payment.value
         return days
 
 
