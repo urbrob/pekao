@@ -13,7 +13,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import StarIcon from '@material-ui/icons/StarBorder';
 import CardContent from '@material-ui/core/CardContent';
 import {Link} from "react-router-dom"
-import {MapContainer} from "../../Components/Home/FreeHeatMap";
+import {FreeMap} from "../../Components/Home/FreeHeatMap";
 
 
 const useStyles = makeStyles(theme => ({
@@ -143,7 +143,7 @@ export default function Home() {
                 </Toolbar>
             </AppBar>
             <main>
-                <MapContainer/>
+                <FreeMap/>
             </main>
             {/* Footer */}
             <footer className={classes.footer}>
