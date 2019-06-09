@@ -167,12 +167,13 @@ class AddEmployee(graphene.Mutation):
 
 class DeleteEmployee(graphene.Mutation):
     class Arguments:
-        employee = graphene.Int()
+        employees = graphene.List(graphene.String)
 
     status = graphene.String()
 
     def mutate(self, info, **kwargs):
-        Employee.objects.filter(id=kwargs['employee'])
+        for employee in kwargs['employees']:
+            Employee.objects.filter(id=int(employee)).delete()
         return DeleteEmployee(status='OK')
 
 
