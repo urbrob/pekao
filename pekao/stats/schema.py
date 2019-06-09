@@ -216,6 +216,7 @@ class ListProducts(graphene.ObjectType):
     def resolve_products(self, info):
         return self
 
+
 class InnerProductInput(graphene.InputObjectType):
     name = graphene.String(required=True)
     price = graphene.Float(required=True)
@@ -225,7 +226,7 @@ class PaymentMutation(graphene.Mutation):
     class Arguments:
         card_number = graphene.String()
         value = graphene.Float()
-        metchod = graphene.String()
+        method = graphene.String()
         region = graphene.String()
         country = graphene.String()
         location = graphene.String()
@@ -233,37 +234,29 @@ class PaymentMutation(graphene.Mutation):
         lon = graphene.Float()
         terminal = graphene.Int()
 
-        products = InnerProductInput(required=True)
+        products = graphene.List(InnerProductInput)
 
     ok = graphene.Boolean()
-    payment = graphene.Field(PaymentNode)
-    products = graphene.Field(ListProducts)
-    error_message = graphene.String()
 
     def mutate(self, info, **kwargs):
-
         payment = Payment.objects.create(
             card_number = kwargs['card_number'],
             value = kwargs['value'],
-            metchod = kwargs['metchod'],
+            method = kwargs['method'],
             region = kwargs['region'],
             country = kwargs['country'],
             location = kwargs['location'],
             lat = kwargs['lat'],
             lon = kwargs['lon'],
-            terminal = kwargs['terminal'],
+            terminal_id=kwargs['terminal']
         )
-
-        for p in products:
+        for p in kwargs['products']:
             Product.objects.create(
                 name = p.name,
                 price = p.price,
                 payment_id = payment.id
             )
-        return PaymentMutation(ok=True, payment=payment)
-
-
-
+        return PaymentMutation(ok=True)
 
 
 class Mutation(graphene.ObjectType):
@@ -274,17 +267,18 @@ class Mutation(graphene.ObjectType):
     delete_shift = DeleteShift.Field()
     payment = PaymentMutation.Field()
 
+
 class Query(graphene.ObjectType):
     raports = graphene.List(RaportNode)
     statistics = graphene.Field(StatsNode)
     payment_heatmap_points = graphene.List(HeatPointNode)
     my_staff = graphene.List(EmployeeNode)
-
     payment = graphene.Field(PaymentNode, id=graphene.Int())
     customer_count = graphene.Field(CustomersCount, employer_id=graphene.Int())
     regular_customer = graphene.Field(RegularCustomer, employer_id=graphene.Int(), card_number=graphene.String())
     new_customer = graphene.Field(RegularCustomer, employer_id=graphene.Int(), card_number=graphene.String())
     how_many_lost_customer = graphene.Field(CustomersCount, employer_id=graphene.Int())
+
 
     def resolve_payment_heatmap_points(self, info, **kwargs):
         points_map = []
