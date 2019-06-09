@@ -21,11 +21,19 @@ function StatiscticsContent(props) {
         <React.Fragment>
 
             <div className={classes.root}>
-                <Grid container direction="row">
+                <Grid container direction="row" justify="space-evenly">
+                    <Grid item>
                     <StatisticBarChart/>
-                    <StatisticBarChart/>
-                    <StatisticBarChart/>
-                    <StatisticBarChart/>
+                    </Grid>
+                    <Grid item>
+                        <StatisticBarChart/>
+                    </Grid>
+                    <Grid item>
+                        <StatisticBarChart/>
+                    </Grid>
+                    <Grid item>
+                        <StatisticBarChart/>
+                    </Grid>
                 </Grid>
 
             </div>

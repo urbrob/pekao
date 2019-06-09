@@ -36,7 +36,7 @@ function MainContent(props) {
 
     return (
         <Paper className={classes.paper}>
-            <h1>Content</h1>
+
         </Paper>
     );
 }

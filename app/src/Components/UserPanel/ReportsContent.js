@@ -43,7 +43,7 @@ function ReportsContent(props) {
                                 <Grid item>
                                     <DatePicker/>
                                 </Grid>
-                                <Grid item>
+                                <Grid item xs={5}>
                                     <Button className={classes.genButton}>
                                         Generate
                                     </Button>
