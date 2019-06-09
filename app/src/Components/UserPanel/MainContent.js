@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import {withStyles} from '@material-ui/core/styles';
-
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
     paper: {
@@ -36,7 +36,7 @@ function MainContent(props) {
 
     return (
         <Paper className={classes.paper}>
-
+          <Typography align='center' variant='h4' style={{marginBottom: "15px"}}>Make your business better!</Typography>
         </Paper>
     );
 }

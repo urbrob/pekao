@@ -18,7 +18,8 @@ import {Link} from "react-router-dom"
 const useStyles = makeStyles(theme => ({
 
     cardPricing:{
-        marginBottom: theme.spacing(1),
+        marginBottom: theme.spacing(0),
+        marginTop: theme.spacing(0),
     },
     heroContent: {
         marginTop: theme.spacing(9),
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
     },
     card: {
-        marginTop: theme.spacing(30),
+        marginTop: theme.spacing(0),
         maxWidth:600,
         height:600,
     },
@@ -91,7 +92,7 @@ const useStyles = makeStyles(theme => ({
 
     footer: {
         backgroundColor: theme.palette.background.paper,
-        marginTop: theme.spacing(50),
+        marginTop: theme.spacing(0),
         padding: theme.spacing(6, 0),
     },
 }));
