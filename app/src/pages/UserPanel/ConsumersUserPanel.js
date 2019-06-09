@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import UserPanel from '../../Components/UserPanel/UserPanel'
 
-export class MainUserPanel extends Component {
+export class ConsumerUserPanel extends Component {
     render() {
         return (
             <React.Fragment>
                 <UserPanel
-                    content={'main'}
-                    prompt={'Welcome Business Master !'}
+                    content={'consumer'}
+                    prompt={'Check on, on your customers.'}
                 >
+
                 </UserPanel>
             </React.Fragment>
 
         );
     }
 }
-export default MainUserPanel;
+export default ConsumerUserPanel;

@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
@@ -55,7 +55,7 @@ const styles = theme => ({
 
 const butTheme = createMuiTheme({
     palette: {
-        primary: blue,
+        primary: red,
     },
 });
 
@@ -93,7 +93,7 @@ export class Register extends Component {
         const { classes } = this.props;
         return (
             <MuiThemeProvider theme={butTheme}>
-                <main className={classes.main}>
+                <div className={classes.main}>
                     <CssBaseline />
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h5">
@@ -128,7 +128,7 @@ export class Register extends Component {
 
                         </form>
                     </Paper>
-                </main>
+                </div>
             </MuiThemeProvider>
         );
     }
