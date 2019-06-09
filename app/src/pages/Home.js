@@ -16,15 +16,26 @@ import {Link} from "react-router-dom"
 
 
 const useStyles = makeStyles(theme => ({
+
+    cardPricing:{
+        marginBottom: theme.spacing(1),
+    },
     heroContent: {
-        marginTop: theme.spacing(24),
-        marginBottom: theme.spacing(32),
+        marginTop: theme.spacing(9),
+        marginBottom: theme.spacing(9),
         padding: theme.spacing(12, 12),
 
     },
+    card: {
+        marginTop: theme.spacing(30),
+        maxWidth:600,
+        height:600,
+    },
     cardHeader: {
+        marginBottom: theme.spacing(1),
         color: "white",
         backgroundColor: "#f44336",
+        height:75,
     },
 
     button: {
@@ -32,11 +43,18 @@ const useStyles = makeStyles(theme => ({
         color: "white",
         backgroundColor: "#f44336",
     },
+    tryButton: {
+        marginTop: theme.spacing(16),
+        padding: theme.spacing(3, 6),
+        margin: theme.spacing(1),
+        color: "white",
+        backgroundColor: "#f44336",
+
+    },
     toolbar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
     },
     toolbarTitle: {
-
         flex: 1,
     },
 
@@ -80,14 +98,25 @@ const useStyles = makeStyles(theme => ({
 const tiers = [
     {
         title: 'Darmowy',
+        subtitle:'/mies',
+        subtitle2: <br></br>,
         price: '0',
-        description: ['Darmowe badanie rynkowe ', 'Podstawowe raporty o twojej firmie'],
+        description: ['Darmowe badanie rynkowe ',
+            'Podstawowe raporty o twojej firmie',
+            <s>Urządzenie do zwiększenia precyzji twoich raportów </s>,
+            <s> Alerty o twojej firmie na email lub telefon </s>,
+            <s> Raport i wykresy o pozycji twojej firmy względem innych w tej samej branży </s>,
+        ],
+
+
 
     },
     {
         title: 'PekaoPro',
-        subtitle: 'Dla Firm z kontem Pekao',
+        subheader: 'Dla Firm z kontem Pekao',
         price: '0',
+        subtitle: '/3mies',
+        subtitle2: 'potem 69zł/mies',
         description: [
             'Badania rynkowe w czasie rzeczywistym',
             'Urządzenie do zwiększenia precyzji twoich raportów',
@@ -98,6 +127,8 @@ const tiers = [
     },
     {
         title: 'Pro',
+        subtitle: '/mies',
+        subtitle2: <br></br>,
         price: '149',
         description: [
             'Badania rynkowe w czasie rzeczywistym',
@@ -123,11 +154,7 @@ export default function Home() {
                     </Typography>
                     <Grid item xs={12}>
                     </Grid>
-                    <Link to={'/potential'}>
-                        <Button variant="contained" size="medium" className={classes.button}>
-                            Potential?!
-                        </Button>
-                    </Link>
+
                     <Link to={'/register'}>
                         <Button variant="contained" size="medium" className={classes.button}>
                             Register
@@ -148,8 +175,8 @@ export default function Home() {
 
                     }
                     <div className={classes.overlay}/>
-                    <Grid container>
-                        <Grid item md={6}>
+                    <Grid container >
+                        <Grid item md={6} >
                             <div className={classes.mainFeaturedPostContent}>
                                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                                     Pekao For Business
@@ -177,38 +204,54 @@ export default function Home() {
                         </Typography>
                     </Container>
                 </div>
+
                 <div className={classes.heroContent}>
                     <Typography variant="h2" align="center" color="textSecondary" paragraph>
                         Odblokuj Potencjał swojej firmy
                     </Typography>
+                    <Typography variant="h2" align="center" color="textSecondary" paragraph>
+                        Wypróbuj za darmo
+                    </Typography>
+                    <Container maxWidth="sm" align="center" >
+                        <Link to={'/potential'} >
+
+                            <Button variant="contained" align="center" size="large" className={classes.tryButton} >
+                                Wypróbuj
+                            </Button>
+                        </Link>
+                    </Container>
+
                 </div>
 
-                <Container maxWidth="md" component="main">
-                    <Grid container spacing={5} alignItems="flex-end">
+                <Container maxWidth="md" component="main"  >
+                    <Grid container spacing={5} >
                         {tiers.map(tier => (
                             // Enterprise card is full width at sm breakpoint
-                            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-                                <Card>
+                            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4} >
+                                <Card className={classes.card}>
                                     <CardHeader
-                                        title={tier.title}
-                                        subheader={tier.subtitle}
-                                        titleTypographyProps={{align: 'center'}}
-                                        subheaderTypographyProps={{align: 'center'}}
+                                        title={tier.title }
+                                        subheader={tier.subheader}
+                                        titleTypographyProps={{align: 'center' }}
+                                        subheaderTypographyProps={{align: 'center', color:'white'}}
+                                        subTypographyProps={{align: 'center', color:'white'}}
                                         action={tier.title === 'PekaoPro' ? <StarIcon/> : null}
                                         className={classes.cardHeader}
                                     />
                                     <CardContent>
                                         <div className={classes.cardPricing}>
-                                            <Typography component="h2" variant="h3" color="textPrimary">
+                                            <Typography component="h2" variant="h3" color="textPrimary" align={"center"}>
                                                 {tier.price} zł
                                             </Typography>
-                                            <Typography variant="h6" color="textSecondary">
-                                                /mo
+
+                                            <Typography variant="h6" color="textSecondary" align={"center"} >
+                                                {tier.subtitle}<br></br>
+                                                {tier.subtitle2}
                                             </Typography>
                                         </div>
                                         <ul>
                                             {tier.description.map(line => (
-                                                <Typography component="li" variant="subtitle1" align="center"
+                                                <Typography component="li" variant="subtitle1" align="left"
                                                             key={line}>
                                                     {line}
                                                 </Typography>

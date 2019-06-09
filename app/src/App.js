@@ -68,6 +68,7 @@ function App() {
                         <Route exact path="/UserPanel/Reports" component={ReportsUserPanel}/>
                         <Route exact path="/UserPanel/Settings" component={SettingsUserPanel}/>
                         <Route exact path="/UserPanel/Plan" component={PlanUserPanel}/>
+                        <Route exact path="/potential" component={Potential}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/404" component={NotFound}/>
