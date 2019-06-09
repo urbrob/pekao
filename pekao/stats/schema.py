@@ -111,6 +111,25 @@ class HeatPointNode(graphene.ObjectType):
         return self['employer_long']
 
 
+class ConsumerMonthStats(graphene.ObjectType):
+    name = graphene.String()
+    customers = graphene.Int()
+    new_customers = graphene.Int()
+    lost_customers = graphene.Int()
+
+    def resolve_name(self, info):
+        return self['name']
+
+    def resolve_customers(self, info):
+        return self['payments'].order_by('card_number').values('card_number').distinct().count()
+
+    def resolve_new_customers(self, info):
+        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 100
+
+    def resolve_lost_customers(self, info):
+        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 1000
+
+
 class MonthStats(graphene.ObjectType):
     name = graphene.String()
     amount = graphene.Int()
@@ -198,6 +217,12 @@ class StatsNode(graphene.ObjectType):
     def resolve_months(self, info):
         return self
 
+class CustomerNode(graphene.ObjectType):
+    months = graphene.List(MonthStats)
+
+    def resolve_months(self, info):
+        return self
+
 
 class InnerProduct(graphene.ObjectType):
     name = graphene.String()
@@ -274,7 +299,7 @@ class Query(graphene.ObjectType):
     payment_heatmap_points = graphene.List(HeatPointNode)
     my_staff = graphene.List(EmployeeNode)
     payment = graphene.Field(PaymentNode, id=graphene.Int())
-    customer_count = graphene.Field(CustomersCount, employer_id=graphene.Int())
+    customers = graphene.List(ConsumerMonthStats)
     regular_customer = graphene.Field(RegularCustomer, employer_id=graphene.Int(), card_number=graphene.String())
     new_customer = graphene.Field(RegularCustomer, employer_id=graphene.Int(), card_number=graphene.String())
     how_many_lost_customer = graphene.Field(CustomersCount, employer_id=graphene.Int())
@@ -314,10 +339,20 @@ class Query(graphene.ObjectType):
             months[payment.created_at.month]['days'].append(payment)
         return months
 
-    def resolve_customer_count(self, info, **kwargs):
-        return Payment.objects.filter(terminal__in=Terminal.objects.filter(employer=kwargs['employer_id'])).annotate(Count('card_number', distinct=True)).count()
+    def resolve_customers(self, info, **kwargs):
+        months = []
+        payments = Payment.objects.filter(terminal__employer__owner=info.context.user)
+        for month in range(1, 13):
+            months.append(
+                {
+                    'name': calendar.month_name[month],
+                    'payments': payments.filter(created_at__month=month),
+                }
+            )
+        return months
 
-    def resolve_regular_customer(self, info, **kwargs):
+
+"""    def resolve_regular_customer(self, info, **kwargs):
         return temp_regular_customer(44, 14, 5, **kwargs)
 
     def resolve_new_customer(self, info, **kwargs):
@@ -330,7 +365,7 @@ class Query(graphene.ObjectType):
         now = count_customer_in_time(30, 0, **kwargs)
         return before - now
 
-
+"""
 def count_customer_in_time(arg_start, arg_end, **kwargs):
     now = date.today()
     start = now - timedelta(days=arg_start)
@@ -350,7 +385,6 @@ def temp_regular_customer(arg_start, arg_end, value, **kwargs):
         created_at__range=[start, end],
         card_number=kwargs['card_number']).annotate(Count('card_number', distinct=False)
     ).count()
-
     if payment > value:
         return True
     return False

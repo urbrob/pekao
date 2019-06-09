@@ -3,7 +3,21 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ConsumerLineChart from "./ConsumerLineChart"
+import { Query } from "react-apollo";
+import StatisticBarChart from "./StatisticBarChart"
+import gql from 'graphql-tag'
 
+
+const consumerQuery = gql`
+  query{
+    customers{
+      name
+      customers
+      newCustomers
+      lostCustomers
+    }
+  }
+`
 
 const styles = theme => ({
     paper: {
@@ -23,7 +37,19 @@ function StatiscticsContent(props) {
             <div className={classes.root}>
                 <Grid container direction="row" alignItems="center" justify="center">
                     <Grid item>
-                        <ConsumerLineChart/>
+                        <Query query={consumerQuery}>
+                          {({ loading, error, data }) => {
+                          if (!loading){
+                          return (
+                            <div>
+                              <ConsumerLineChart data={data.customers}/>
+                            </div>
+                          );
+                        }else return (<div></div>)
+                        }
+                        }
+                        </Query>
+
                     </Grid>
                 </Grid>
 

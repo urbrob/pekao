@@ -3,6 +3,8 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+
 
 const data = [
     {
@@ -34,11 +36,11 @@ export default class Example extends PureComponent {
     render() {
         return (
             <Paper style={{marginTop: "5%", paddingTop: "2%"}}>
-                <h4>Chart title</h4>
+                <Typography align='center' variant='h4'>Consumer statistics</Typography>
                 <LineChart
                     width={600}
                     height={400}
-                    data={data}
+                    data={this.props.data}
                     margin={{
                         top: 5, right: 30, left: 20, bottom: 5,
                     }}
@@ -48,8 +50,9 @@ export default class Example extends PureComponent {
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d"/>
+                    <Line type="monotone" dataKey="customers" stroke="#8884d8" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="newCustomers" stroke="#82ca9d"/>
+                    <Line type="monotone" dataKey="lostCustomers" stroke="#444444"/>
                 </LineChart>
             </Paper>
 
