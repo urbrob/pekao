@@ -22,10 +22,10 @@ function SettingsContent(props) {
     return (
         <React.Fragment>
             <Paper className={classes.paper}>
-            <div className={classes.root} style={{marginLeft: "2%", marginTop: "10%"}}>
+            <div className={classes.root} style={{marginLeft: "2%", marginTop: "2%"}}>
                 <Grid container direction="column" alignItems="flex-start" justify="center" >
                     <Grid item>
-                        <Typography variant="h4" align="center">
+                        <Typography style={{marginTop: "4%"}} variant="h4" align="center">
                             Manage notifications
                         </Typography>
                     </Grid>
@@ -57,7 +57,7 @@ function SettingsContent(props) {
                 <div className={classes.root} style={{marginLeft: "2%", marginTop: "5%"}}>
                     <Grid container direction="column" alignItems="flex-start" justify="center" >
                         <Grid item>
-                            <Typography variant="h4" align="center">
+                            <Typography style={{marginTop: "4%"}} variant="h4" align="center">
                                 Manage data
                             </Typography>
                         </Grid>
