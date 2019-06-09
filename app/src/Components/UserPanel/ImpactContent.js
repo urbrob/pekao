@@ -4,6 +4,9 @@ import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 
 
 const styles = theme => ({
@@ -41,6 +44,25 @@ function ImpactContent(props) {
                       <Typography align='center' variant='h4' style={{marginBottom: "15px"}} color='primary'>9.23%</Typography>
                     </Grid>
                   </Paper>
+                    <Grid container style={{margin:"5%"}}>
+                        <Grid item>
+                            <Card className={classes.card}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        alt="Contemplative Reptile"
+                                        height="200"
+                                        width="200"
+                                        image="https://i.imgur.com/K6cKyb1.png"
+                                        title="Your map"
+                                    />
+                                </CardActionArea>
+
+                            </Card>
+                        </Grid>
+
+
+                    </Grid>
                 </Grid>
 
             </div>

@@ -13,7 +13,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import StarIcon from '@material-ui/icons/StarBorder';
 import CardContent from '@material-ui/core/CardContent';
 import {Link} from "react-router-dom"
-import {FreeMap} from "../../Components/Home/FreeHeatMap";
+import IntegrationReactSelect, {FreeMap} from "../../Components/Home/FreeHeatMap";
 
 
 const useStyles = makeStyles(theme => ({
@@ -124,11 +124,6 @@ export default function Home() {
                     </Typography>
                     <Grid item xs={12}>
                     </Grid>
-                    <Link to={'/potential'}>
-                        <Button variant="contained" size="medium" className={classes.button}>
-                            Potential?!
-                        </Button>
-                    </Link>
                     <Link to={'/register'}>
                         <Button variant="contained" size="medium" className={classes.button}>
                             Register
@@ -143,7 +138,9 @@ export default function Home() {
                 </Toolbar>
             </AppBar>
             <main>
-                <FreeMap/>
+                <Paper style={{margin: "30%", marginTop: "5%"}}>
+                    <IntegrationReactSelect/>
+                </Paper>
             </main>
             {/* Footer */}
             <footer className={classes.footer}>
