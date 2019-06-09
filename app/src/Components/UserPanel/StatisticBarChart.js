@@ -33,7 +33,7 @@ export default class StatisticBarChart extends PureComponent {
 
     render() {
         return (
-            <Paper style={{marginRight: "5%", marginLeft: "5%", marginTop: '5%'}}>
+            <Paper style={{marginTop: "8%"}}>
                 <h4>Chart title</h4>
                 <BarChart
                     width={500}
