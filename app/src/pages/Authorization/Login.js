@@ -10,13 +10,13 @@ import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import withStyles from '@material-ui/core/styles/withStyles';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
+import {graphql} from 'react-apollo'
 
 const tokenAuth = gql`
   mutation($username: String!, $password: String!){
@@ -64,7 +64,6 @@ const butTheme = createMuiTheme({
 });
 
 
-
 export class Login extends Component {
     constructor() {
         super();
@@ -78,10 +77,10 @@ export class Login extends Component {
         e.preventDefault();
         this.props.mutate({
             variables: {username: this.state.username, password: this.state.password}
-        }).then(function(result) {
+        }).then(function (result) {
             localStorage.setItem('token', result.data.tokenAuth.token);
             window.location.href = "/user"
-        }).catch(function(err) {
+        }).catch(function (err) {
             alert(err);
         });
     }
@@ -94,17 +93,17 @@ export class Login extends Component {
 
     render() {
         console.log(this.state);
-        const { classes } = this.props;
+        const {classes} = this.props;
         return (
             <MuiThemeProvider theme={butTheme}>
 
                 <Grid container component="main" className={classes.root}>
-                    <CssBaseline />
-                    <Grid item xs={false} sm={4} md={7} className={classes.image} />
+                    <CssBaseline/>
+                    <Grid item xs={false} sm={4} md={7} className={classes.image}/>
                     <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                         <div className={classes.paper}>
                             <Avatar className={classes.avatar}>
-                                <LockOutlinedIcon />
+                                <LockOutlinedIcon/>
                             </Avatar>
                             <Typography component="h1" variant="h5">
                                 Sign in
@@ -137,7 +136,7 @@ export class Login extends Component {
                                     autoComplete="current-password"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
+                                    control={<Checkbox value="remember" color="primary"/>}
                                     label="Remember me"
                                 />
                                 <Button
@@ -172,6 +171,7 @@ export class Login extends Component {
         );
     }
 }
+
 Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };

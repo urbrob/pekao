@@ -15,4 +15,5 @@ export class SummaryUserPanel extends Component {
         );
     }
 }
+
 export default SummaryUserPanel;

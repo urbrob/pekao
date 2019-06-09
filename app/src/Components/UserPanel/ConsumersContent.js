@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ConsumerLineChart from "./ConsumerLineChart"
-
 
 
 const styles = theme => ({
@@ -16,13 +15,13 @@ const styles = theme => ({
 });
 
 function StatiscticsContent(props) {
-    const { classes } = props;
+    const {classes} = props;
 
     return (
         <React.Fragment>
 
             <div className={classes.root}>
-                <Grid container direction="row">
+                <Grid container direction="row" alignItems="center" justify="center">
                     <Grid item>
                         <ConsumerLineChart/>
                     </Grid>

@@ -8,10 +8,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
+import {graphql} from 'react-apollo'
 
 const createUserMutation = gql`
   mutation($username: String!, $password: String!, $email: String!){
@@ -60,7 +60,6 @@ const butTheme = createMuiTheme({
 });
 
 
-
 export class Register extends Component {
     constructor() {
         super();
@@ -75,10 +74,10 @@ export class Register extends Component {
         e.preventDefault();
         this.props.mutate({
             variables: {username: this.state.username, password: this.state.password, email: this.state.email}
-        }).then(function(result) {
+        }).then(function (result) {
             localStorage.setItem('token', result.data.createUser.token);
             window.location.href = "/user"
-        }).catch(function(err) {
+        }).catch(function (err) {
             alert(err);
         });
     }
@@ -90,11 +89,11 @@ export class Register extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
         return (
             <MuiThemeProvider theme={butTheme}>
                 <div className={classes.main}>
-                    <CssBaseline />
+                    <CssBaseline/>
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h5">
                             Register
@@ -102,15 +101,18 @@ export class Register extends Component {
                         <form className={classes.form}>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="username">Username</InputLabel>
-                                <Input id="username" autoComplete="username" onChange={this.handleChange} values={this.state.username} autoFocus />
+                                <Input id="username" autoComplete="username" onChange={this.handleChange}
+                                       values={this.state.username} autoFocus/>
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" onChange={this.handleChange} values={this.state.email} autoComplete="email"  />
+                                <Input id="email" name="email" onChange={this.handleChange} values={this.state.email}
+                                       autoComplete="email"/>
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input name="password" type="password" onChange={this.handleChange} values={this.state.password} id="password" autoComplete="current-password" />
+                                <Input name="password" type="password" onChange={this.handleChange}
+                                       values={this.state.password} id="password" autoComplete="current-password"/>
                             </FormControl>
 
 
@@ -133,6 +135,7 @@ export class Register extends Component {
         );
     }
 }
+
 Register.propTypes = {
     classes: PropTypes.object.isRequired,
 };
