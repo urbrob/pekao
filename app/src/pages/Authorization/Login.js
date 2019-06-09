@@ -32,7 +32,7 @@ const styles = theme => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://negativespace.co/wp-content/uploads/2017/04/negative-space-thumb-business-man-laptop-wireframes-1.jpg)',
+        backgroundImage: 'url(https://i.imgur.com/TVFgMdW.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
