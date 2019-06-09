@@ -1,8 +1,78 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import {Line, LineChart} from "recharts";
+import ShiftTable from "./ShiftTable";
+
+
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root}>
+            <Typography variant="h6">{children}</Typography>
+            {onClose ? (
+                <IconButton aria-label="Close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon />
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
+
+const DialogContent = withStyles(theme => ({
+    root: {
+        padding: theme.spacing(2),
+    },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles(theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(1),
+    },
+}))(MuiDialogActions);
+
 
 class StaffTable extends React.Component {
+
+    state = {
+        open: false,
+    };
+
+    handleClickOpen = () => {
+        console.log('open');
+        this.setState({
+            open: true,
+        });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
     render() {
+
         const columns = ["Name", "Title", "Location", "Age", "Salary"];
 
         const data = [
@@ -60,14 +130,75 @@ class StaffTable extends React.Component {
             filterType: "dropdown",
             responsive: "scroll"
         };
-
+        const chartData = [
+            {
+                name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+            },
+            {
+                name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+            },
+            {
+                name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+            },
+            {
+                name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+            },
+            {
+                name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+            },
+            {
+                name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+            },
+            {
+                name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+            },
+        ];
         return (
-            <MUIDataTable
-                title={"Employee list"}
-                data={data}
-                columns={columns}
-                options={options}
-            />
+            <React.Fragment>
+                <MUIDataTable
+                    title={"Employee list"}
+                    data={data}
+                    columns={columns}
+                    options={options}
+
+                />
+                <Button onClick={this.handleClickOpen} >
+                    Show details
+                </Button>
+                <Dialog
+                    onClose={this.handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    open={this.state.open}
+                >
+                    <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+                        Employee details
+                    </DialogTitle>
+                    <DialogContent dividers>
+                        <Typography gutterBottom variant="h4">
+                            Gabby George
+                        </Typography>
+                        <Typography gutterBottom>
+                            Currently on shift: <h5 style={{color: 'red'}}>No</h5>
+                        </Typography>
+                        <Typography gutterBottom variant="h6">
+                            Check on employee statistics
+                        </Typography>
+                        <LineChart width={300} height={100} data={chartData}>
+                            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2} />
+                        </LineChart>
+                        <Typography gutterBottom variant="h6">
+                            Shifts
+                        </Typography>
+                        <ShiftTable/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </React.Fragment>
+
         );
     }
 }

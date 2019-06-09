@@ -12,6 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import {createMuiTheme, MuiThemeProvider, withStyles} from '@material-ui/core/styles';
 import red from "@material-ui/core/colors/red";
+import {Link} from 'react-router-dom'
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -79,15 +80,17 @@ function Header(props) {
                                 </Tooltip>
                             </Grid>
                             <Grid item>
-                                <Tooltip title="Your profile">
-                                    <IconButton size="large" color="inherit" className={classes.iconButtonAvatar}>
-                                        <Avatar
-                                            className={classes.bigAvatar}
-                                            src="https://thefinanser.com/wp-content/uploads/2015/12/6a01053620481c970b01b7c7617a9f970b-600wi.jpg"
-                                            alt="My Avatar"
-                                        />
-                                    </IconButton>
-                                </Tooltip>
+                                <Link to={'/UserPanel/Settings'}>
+                                    <Tooltip title="Your profile">
+                                        <IconButton size="large" color="inherit" className={classes.iconButtonAvatar}>
+                                            <Avatar
+                                                className={classes.bigAvatar}
+                                                src="https://thefinanser.com/wp-content/uploads/2015/12/6a01053620481c970b01b7c7617a9f970b-600wi.jpg"
+                                                alt="My Avatar"
+                                            />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Link>
                             </Grid>
                         </Grid>
                     </Toolbar>
