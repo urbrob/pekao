@@ -19,9 +19,7 @@ class TerminalAdmin(admin.ModelAdmin):
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    search_fields = ['card_number', 'value', 'method', 'region', 'country', 'location', 'terminal', 'created_at', 'modified_at']
-    fields = ('card_number', 'value', 'method', 'region', 'country', 'location', 'terminal')
-    list_display = ('card_number', 'value', 'method', 'region', 'country', 'location', 'terminal', 'created_at', 'modified_at')
+    pass
 
 
 @admin.register(Raport)

@@ -92,7 +92,6 @@ export class Login extends Component {
     }
 
     render() {
-        console.log(this.state);
         const {classes} = this.props;
         return (
             <MuiThemeProvider theme={butTheme}>
@@ -116,8 +115,8 @@ export class Login extends Component {
                                     fullWidth
                                     onChange={this.handleChange}
                                     values={this.state.username}
-                                    id="email"
-                                    label="Email Address"
+                                    id="username"
+                                    label="Username"
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
