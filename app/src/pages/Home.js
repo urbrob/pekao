@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#f44336",
     },
     tryButton: {
-        marginTop: theme.spacing(16),
+        marginTop: theme.spacing(3),
         padding: theme.spacing(3, 6),
         margin: theme.spacing(1),
         color: "white",
@@ -170,16 +170,12 @@ export default function Home() {
             </AppBar>
             <main>
                 <Paper className={classes.mainFeaturedPost}>
-                    {/* Increase the priority of the hero background image */}
-                    {
-
-                    }
                     <div className={classes.overlay}/>
                     <Grid container >
                         <Grid item md={6} >
                             <div className={classes.mainFeaturedPostContent}>
                                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                                    Pekao For Business
+                                    PEKAO for business
                                 </Typography>
                                 <Typography variant="h2" color="inherit" paragraph>
                                     Unlock Your Potential
@@ -188,42 +184,24 @@ export default function Home() {
                         </Grid>
                     </Grid>
                 </Paper>
-                {/* Hero unit */}
-
-
-                <div className={classes.heroContent}>
-                    <Container maxWidth="sm">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Pekao
-                        </Typography>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Dla
-                        </Typography>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Biznesu
-                        </Typography>
-                    </Container>
-                </div>
 
                 <div className={classes.heroContent}>
                     <Typography variant="h2" align="center" color="textSecondary" paragraph>
-                        Odblokuj Potencjał swojej firmy
+                        Zastanawiasz się czy Twój biznes ma sens ?
                     </Typography>
                     <Typography variant="h2" align="center" color="textSecondary" paragraph>
-                        Wypróbuj za darmo
+                        Sprawdź jego potencjał za darmo!
                     </Typography>
                     <Container maxWidth="sm" align="center" >
                         <Link to={'/potential'} >
-
                             <Button variant="contained" align="center" size="large" className={classes.tryButton} >
                                 Wypróbuj
                             </Button>
                         </Link>
                     </Container>
-
                 </div>
 
-                <Container maxWidth="md" component="main"  >
+                <Container maxWidth="md" component="main">
                     <Grid container spacing={5} >
                         {tiers.map(tier => (
                             // Enterprise card is full width at sm breakpoint
