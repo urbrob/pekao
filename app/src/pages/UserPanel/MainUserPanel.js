@@ -15,4 +15,5 @@ export class MainUserPanel extends Component {
         );
     }
 }
+
 export default MainUserPanel;

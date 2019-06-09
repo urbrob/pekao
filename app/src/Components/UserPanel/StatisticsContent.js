@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Chart from "./Chart"
 import gql from 'graphql-tag'
 import { Query } from "react-apollo";
+import StatisticBarChart from "./StatisticBarChart"
+
 
 const statisticsQuery = gql`
   query{
@@ -33,34 +34,32 @@ const styles = theme => ({
 });
 
 function StatiscticsContent(props) {
-    const { classes } = props;
-
+    const {classes} = props;
 
     return (
         <React.Fragment>
             <div className={classes.root}>
-                <Grid container direction="row">
+                <Grid container direction="row" justify="space-evenly">
                     <Query query={statisticsQuery}>
                       {({ loading, error, data }) => {
-                        console.log(data)
-                        if (loading) return (
-                          <div>
-                          <Chart />
-                          <Chart />
-                          </div>
-                        );
+                      if (!loading){
                       return (
                         <div>
-                        <Chart data={data.statistics.months}/>
-                        <Chart data={data.statistics.months[6].days}/>
+                          <Grid item>
+                            <StatisticBarChart data={data.statistics.months} title='Year 2019'/>
+                          </Grid>
+                          <Grid item>
+                              <StatisticBarChart data={data.statistics.months[6].days} title='June'/>
+                          </Grid>
                         </div>
                       );
-                    }}
+                    }else return (<div></div>)
+                  }
+                  }
                     </Query>
-
                 </Grid>
+              </div>
 
-            </div>
 
         </React.Fragment>
 

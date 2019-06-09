@@ -16,4 +16,5 @@ export class ConsumerUserPanel extends Component {
         );
     }
 }
+
 export default ConsumerUserPanel;

@@ -15,4 +15,5 @@ export class StaffUserPanel extends Component {
         );
     }
 }
+
 export default StaffUserPanel;

@@ -16,4 +16,5 @@ export class SettingsUserPanel extends Component {
         );
     }
 }
+
 export default SettingsUserPanel;

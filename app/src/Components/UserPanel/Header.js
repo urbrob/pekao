@@ -10,7 +10,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import {withStyles} from '@material-ui/core/styles';
+import {createMuiTheme, MuiThemeProvider, withStyles} from '@material-ui/core/styles';
+import red from "@material-ui/core/colors/red";
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -41,67 +42,76 @@ const styles = theme => ({
     },
 });
 
+const butTheme = createMuiTheme({
+    palette: {
+        primary: red,
+        secondary: red,
+    },
+});
+
 function Header(props) {
     const {classes, onDrawerToggle} = props;
-    const { prompt } = props;
+    const {prompt} = props;
     return (
-        <React.Fragment>
-            <AppBar color="primary" position="sticky" elevation={0}>
-                <Toolbar>
-                    <Grid container spacing={1} alignItems="center">
-                        <Hidden smUp>
+        <MuiThemeProvider theme={butTheme}>
+            <React.Fragment>
+                <AppBar color="primary" position="sticky" elevation={0}>
+                    <Toolbar>
+                        <Grid container spacing={1} alignItems="center">
+                            <Hidden smUp>
+                                <Grid item>
+                                    <IconButton
+                                        color="inherit"
+                                        aria-label="Open drawer"
+                                        onClick={onDrawerToggle}
+                                        className={classes.menuButton}
+                                    >
+                                        <MenuIcon/>
+                                    </IconButton>
+                                </Grid>
+                            </Hidden>
+                            <Grid item xs/>
                             <Grid item>
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="Open drawer"
-                                    onClick={onDrawerToggle}
-                                    className={classes.menuButton}
-                                >
-                                    <MenuIcon/>
-                                </IconButton>
+                                <Tooltip title="Alerts">
+                                    <IconButton color="inherit">
+                                        <NotificationsIcon fontSize="large"/>
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
-                        </Hidden>
-                        <Grid item xs/>
-                        <Grid item>
-                            <Tooltip title="Alerts">
-                                <IconButton color="inherit">
-                                    <NotificationsIcon fontSize="large"/>
-                                </IconButton>
-                            </Tooltip>
+                            <Grid item>
+                                <Tooltip title="Your profile">
+                                    <IconButton size="large" color="inherit" className={classes.iconButtonAvatar}>
+                                        <Avatar
+                                            className={classes.bigAvatar}
+                                            src="https://thefinanser.com/wp-content/uploads/2015/12/6a01053620481c970b01b7c7617a9f970b-600wi.jpg"
+                                            alt="My Avatar"
+                                        />
+                                    </IconButton>
+                                </Tooltip>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <Tooltip title="Your profile">
-                                <IconButton size="large" color="inherit" className={classes.iconButtonAvatar}>
-                                    <Avatar
-                                        className={classes.bigAvatar}
-                                        src="https://thefinanser.com/wp-content/uploads/2015/12/6a01053620481c970b01b7c7617a9f970b-600wi.jpg"
-                                        alt="My Avatar"
-                                    />
-                                </IconButton>
-                            </Tooltip>
-                        </Grid>
-                    </Grid>
-                </Toolbar>
-            </AppBar>
-            <AppBar
-                component="div"
-                className={classes.secondaryBar}
-                color="primary"
-                position="static"
-                elevation={0}
-            >
-                <Toolbar>
-                    <Grid container alignItems="center" spacing={1}>
-                        <Grid item xs>
-                            <Typography style={{paddingBottom: "1.4%"}} color="inherit" variant="h5" component="h1">
-                                { prompt }
-                            </Typography>
-                        </Grid>
+                    </Toolbar>
+                </AppBar>
+                <AppBar
+                    component="div"
+                    className={classes.secondaryBar}
+                    color="primary"
+                    position="static"
+                    elevation={0}
+                >
+                    <Toolbar>
+                        <Grid container alignItems="center" spacing={1}>
+                            <Grid item xs>
+                                <Typography style={{paddingBottom: "1.4%"}} color="inherit" variant="h5" component="h1">
+                                    {prompt}
+                                </Typography>
+                            </Grid>
 
-                    </Grid>
-                </Toolbar>
-            </AppBar>
-        </React.Fragment>
+                        </Grid>
+                    </Toolbar>
+                </AppBar>
+            </React.Fragment>
+        </MuiThemeProvider>
     );
 }
 

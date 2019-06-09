@@ -3,7 +3,10 @@ from stats.models import Employer, Terminal, Payment, Raport
 
 @admin.register(Employer)
 class EmployerAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ['owner', 'name', 'created_at', 'modified_at', 'location', 'branch_of_business']
+    fields = ('owner', 'name', 'location', 'branch_of_business')
+    list_display = ('owner', 'name', 'created_at', 'modified_at', 'location', 'branch_of_business','lat','lon')
+
 
 @admin.register(Terminal)
 class TerminalAdmin(admin.ModelAdmin):

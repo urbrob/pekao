@@ -15,4 +15,5 @@ export class ImpactUserPanel extends Component {
         );
     }
 }
+
 export default ImpactUserPanel;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMuiTheme, withStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import {createMuiTheme, withStyles} from '@material-ui/core/styles';
+import {ThemeProvider} from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from './Navigator';
@@ -154,81 +154,81 @@ class UserPanel extends React.Component {
     };
 
     handleDrawerToggle = () => {
-        this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+        this.setState(state => ({mobileOpen: !state.mobileOpen}));
     };
-    renderContent = () =>{
-          const {content} = this.props;
-          switch(content){
-              case 'main':
-                  return(
-                      <MainContent/>
-                      );
-              case 'stats':
-                  return(
-                      <StatisticsContent/>
-                  );
-              case 'consumer':
-                  return(
-                    < ConsumerContent />
-                  );
-              case 'impact':
-                  return(
-                      <ImpactContent/>
-                  );
-              case 'summary':
-                  return(
-                      <SummaryContent/>
-                  );
-              case 'staff':
-                  return(
-                      <StaffContent/>
-                  );
-              case 'reports':
-                  return(
-                      <ReportsContent/>
-                  );
-              case 'settings':
-                  return(
-                      <SettingsContent/>
-                  );
-              case 'plan':
-                  return(
-                      <PlanContent/>
-                  );
-              default:
-                  return(
-                      <MainContent/>
-                  )
+    renderContent = () => {
+        const {content} = this.props;
+        switch (content) {
+            case 'main':
+                return (
+                    <MainContent/>
+                );
+            case 'stats':
+                return (
+                    <StatisticsContent/>
+                );
+            case 'consumer':
+                return (
+                    < ConsumerContent/>
+                );
+            case 'impact':
+                return (
+                    <ImpactContent/>
+                );
+            case 'summary':
+                return (
+                    <SummaryContent/>
+                );
+            case 'staff':
+                return (
+                    <StaffContent/>
+                );
+            case 'reports':
+                return (
+                    <ReportsContent/>
+                );
+            case 'settings':
+                return (
+                    <SettingsContent/>
+                );
+            case 'plan':
+                return (
+                    <PlanContent/>
+                );
+            default:
+                return (
+                    <MainContent/>
+                )
 
-          }
+        }
 
     };
 
     render() {
-        const { classes } = this.props;
-        const { prompt } = this.props;
+        const {classes} = this.props;
+        const {prompt} = this.props;
         return (
             <ThemeProvider theme={theme}>
                 <div className={classes.root}>
-                    <CssBaseline />
+                    <CssBaseline/>
                     <nav className={classes.drawer}>
                         <Hidden smUp implementation="js">
                             <Navigator
-                                PaperProps={{ style: { width: drawerWidth } }}
+                                PaperProps={{style: {width: drawerWidth}}}
                                 variant="temporary"
                                 open={this.state.mobileOpen}
                                 onClose={this.handleDrawerToggle}
                             />
                         </Hidden>
                         <Hidden xsDown implementation="css">
-                            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+                            <Navigator PaperProps={{style: {width: drawerWidth}}}/>
                         </Hidden>
                     </nav>
                     <div className={classes.appContent}>
-                        <Header prompt={prompt} onDrawerToggle={this.handleDrawerToggle} />
-                        <main  >
+                        <Header prompt={prompt} onDrawerToggle={this.handleDrawerToggle}/>
+                        <main>
                             {
-                              this.renderContent()
+                                this.renderContent()
                             }
                         </main>
                     </div>
