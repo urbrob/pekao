@@ -79,7 +79,7 @@ export class Login extends Component {
             variables: {username: this.state.username, password: this.state.password}
         }).then(function (result) {
             localStorage.setItem('token', result.data.tokenAuth.token);
-            window.location.href = "/user"
+            window.location.href = "/UserPanel"
         }).catch(function (err) {
             alert(err);
         });

@@ -13,6 +13,7 @@ import ApolloClient from "apollo-boost";
 import {ApolloProvider} from "react-apollo";
 import MainUserPanel from "./pages/UserPanel/MainUserPanel";
 import Logout from "./pages/Authorization/Logout";
+import Potential from "./pages/Authorization/Potential";
 import StatisticsUserPanel from "./pages/UserPanel/StatisticsUserPanel";
 import ConsumersUserPanel from "./pages/UserPanel/ConsumersUserPanel";
 import ImpactUserPanel from "./pages/UserPanel/ImpactUserPanel"
@@ -47,6 +48,7 @@ function App() {
                         <Route exact path="/UserPanel/Settings" component={SettingsUserPanel}/>
                         <Route exact path="/UserPanel/Plan" component={PlanUserPanel}/>
                         <Route exact path="/login" component={Login}/>
+                        <Route exact path="/potential" component={Potential}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/404" component={NotFound}/>
                         <Route exact path="/logout" component={Logout}/>
