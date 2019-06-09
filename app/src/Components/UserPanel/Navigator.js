@@ -111,18 +111,18 @@ function Navigator(props) {
                     User panel
                 </ListItem>
                 <Link to={'/UserPanel'}>
-                <ListItem className={clsx(classes.item, classes.itemCategory)}>
-                    <ListItemIcon className={classes.itemIcon}>
-                        <HomeIcon/>
-                    </ListItemIcon>
-                    <ListItemText
-                        classes={{
-                            primary: classes.itemPrimary,
-                        }}
-                    >
-                        Home view
-                    </ListItemText>
-                </ListItem>
+                    <ListItem className={clsx(classes.item, classes.itemCategory)}>
+                        <ListItemIcon className={classes.itemIcon}>
+                            <HomeIcon/>
+                        </ListItemIcon>
+                        <ListItemText
+                            classes={{
+                                primary: classes.itemPrimary,
+                            }}
+                        >
+                            Home view
+                        </ListItemText>
+                    </ListItem>
                 </Link>
                 {categories.map(({id, children}) => (
                     <React.Fragment key={id}>
@@ -157,14 +157,14 @@ function Navigator(props) {
                     </React.Fragment>
                 ))}
                 <Link to={'/logout'}>
-                <ListItem className={classes.itemLogout}>
-                    <ListItemIcon className={classes.itemIcon}>
-                        <PowerSettingsNewIcon fontSize="large"/>
-                    </ListItemIcon>
-                    <ListItem>
-                        Logout
+                    <ListItem className={classes.itemLogout}>
+                        <ListItemIcon className={classes.itemIcon}>
+                            <PowerSettingsNewIcon fontSize="large"/>
+                        </ListItemIcon>
+                        <ListItem>
+                            Logout
+                        </ListItem>
                     </ListItem>
-                </ListItem>
                 </Link>
 
             </List>

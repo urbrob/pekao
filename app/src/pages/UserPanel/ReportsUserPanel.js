@@ -15,4 +15,5 @@ export class ReportsUserPanel extends Component {
         );
     }
 }
+
 export default ReportsUserPanel;

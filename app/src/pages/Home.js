@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
@@ -12,24 +12,24 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import StarIcon from '@material-ui/icons/StarBorder';
 import CardContent from '@material-ui/core/CardContent';
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
 const useStyles = makeStyles(theme => ({
-    heroContent:{
+    heroContent: {
         marginTop: theme.spacing(24),
         marginBottom: theme.spacing(32),
         padding: theme.spacing(12, 12),
 
     },
     cardHeader: {
-        color:"white",
+        color: "white",
         backgroundColor: "#f44336",
     },
 
-    button:{
+    button: {
         margin: theme.spacing(1),
-        color:"white",
+        color: "white",
         backgroundColor: "#f44336",
     },
     toolbar: {
@@ -115,24 +115,24 @@ export default function Home() {
 
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar color="EFEFEF" position="relative">
                 <Toolbar>
-                    <Typography variant="h6"   >
+                    <Typography variant="h6">
                         PekaoForBusiness
                     </Typography>
                     <Grid item xs={12}>
                     </Grid>
                     <Link to={'/register'}>
-                    <Button variant="contained" size="medium" className={classes.button}>
-                        Register
+                        <Button variant="contained" size="medium" className={classes.button}>
+                            Register
 
-                    </Button>
+                        </Button>
                     </Link>
                     <Link to={'/login'}>
-                    <Button variant="contained" size="medium" className={classes.button}>
-                        Login
-                    </Button>
+                        <Button variant="contained" size="medium" className={classes.button}>
+                            Login
+                        </Button>
                     </Link>
                 </Toolbar>
             </AppBar>
@@ -142,7 +142,7 @@ export default function Home() {
                     {
 
                     }
-                    <div className={classes.overlay} />
+                    <div className={classes.overlay}/>
                     <Grid container>
                         <Grid item md={6}>
                             <div className={classes.mainFeaturedPostContent}>
@@ -160,8 +160,8 @@ export default function Home() {
 
 
                 <div className={classes.heroContent}>
-                    <Container maxWidth="sm" >
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom >
+                    <Container maxWidth="sm">
+                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                             Pekao
                         </Typography>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -187,9 +187,9 @@ export default function Home() {
                                     <CardHeader
                                         title={tier.title}
                                         subheader={tier.subtitle}
-                                        titleTypographyProps={{ align: 'center' }}
-                                        subheaderTypographyProps={{ align: 'center' }}
-                                        action={tier.title === 'PekaoPro' ? <StarIcon /> : null}
+                                        titleTypographyProps={{align: 'center'}}
+                                        subheaderTypographyProps={{align: 'center'}}
+                                        action={tier.title === 'PekaoPro' ? <StarIcon/> : null}
                                         className={classes.cardHeader}
                                     />
                                     <CardContent>
@@ -203,7 +203,8 @@ export default function Home() {
                                         </div>
                                         <ul>
                                             {tier.description.map(line => (
-                                                <Typography component="li" variant="subtitle1" align="center" key={line}>
+                                                <Typography component="li" variant="subtitle1" align="center"
+                                                            key={line}>
                                                     {line}
                                                 </Typography>
                                             ))}

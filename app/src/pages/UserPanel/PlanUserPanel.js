@@ -16,4 +16,5 @@ export class PlanUserPanel extends Component {
         );
     }
 }
+
 export default PlanUserPanel;

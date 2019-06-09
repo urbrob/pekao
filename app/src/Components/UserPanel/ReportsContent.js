@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {Paper} from "@material-ui/core";
 import DatePicker from "./DatePicker"
@@ -10,40 +10,45 @@ import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     paper: {
-        width: 500,
-        height: 400,
-        marginTop: "15%",
-        marginLeft: "70%",
-        marginBottom: "5%",
-    },
-    genButton:{
-        color: "white",
-        width:200,
-        height:100,
+
         marginTop: "10%",
-        marginLeft: "30%",
+        marginBottom: "5%",
+        paddingBottom: "10%",
+    },
+    genButton: {
+        color: "white",
+        marginTop: "20%",
         fontSize: 24,
         backgroundColor: "red",
+        padding: 40,
     },
 });
 
 function ReportsContent(props) {
-    const { classes } = props;
+    const {classes} = props;
 
     return (
         <React.Fragment>
 
             <div className={classes.root}>
-                <Grid container direction="row">
-                    <Grid item>
+                <Grid container direction="row" justify="center">
+                    <Grid item xs={6}>
                         <Paper className={classes.paper}>
-
-                            <Typography style={{paddingTop:"7%", marginBottom:"5%"}} align="center" variant="h4">
-                                Pick date of which you want to generate report of.</Typography>
-                            <DatePicker/>
-                            <Button className={classes.genButton}>
-                                Generate
-                            </Button>
+                            <Grid container direction="column" justify="center" alignItems="center">
+                                <Grid item>
+                                    <Typography style={{paddingTop: "7%", marginBottom: "5%"}} align="center"
+                                                variant="h4">
+                                        Pick date of which you want to generate report of.</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <DatePicker/>
+                                </Grid>
+                                <Grid item>
+                                    <Button className={classes.genButton}>
+                                        Generate
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Paper>
                     </Grid>
                 </Grid>
