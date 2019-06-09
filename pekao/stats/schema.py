@@ -124,10 +124,10 @@ class ConsumerMonthStats(graphene.ObjectType):
         return self['payments'].order_by('card_number').values('card_number').distinct().count()
 
     def resolve_new_customers(self, info):
-        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 100
+        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 7
 
     def resolve_lost_customers(self, info):
-        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 1000
+        return self['payments'].order_by('card_number').values('card_number').distinct().count() / 56
 
 
 class MonthStats(graphene.ObjectType):
