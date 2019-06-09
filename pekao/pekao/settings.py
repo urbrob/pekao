@@ -103,6 +103,28 @@ DATABASES = {
     }
 }
 
+AWS_ACCESS_KEY_ID = 'AKIAJUVL5CF4BONDXNPATEST'
+AWS_SECRET_ACCESS_KEY = 'aeyx9x/uYpiOWnlwk47lg3IAT/jy+KKidXor1ojTTest'
+
+# Celery
+BROKER_URL = 'redis://redis:6379/0'
+CELERY_BACKEND_URL = BROKER_URL
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BROKER_URL = BROKER_URL
+CELERY_TIMEZONE = 'Europe/Warsaw'
+CELERY_BEAT_SCHEDULE = {
+    "check_suspicious_situation": {
+        "task": "check_suspicious_situation",
+        "schedule": 60 * 60,  # 1 hour
+        }
+}
+
+# Sendgrid
+SENDGRID_API_KEY = ''
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -128,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Warsaw'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

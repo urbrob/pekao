@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import StatisticBarChart from "./StatisticBarChart"
+import ConsumerLineChart from "./ConsumerLineChart"
 
 
 const styles = theme => ({
@@ -21,18 +21,9 @@ function StatiscticsContent(props) {
         <React.Fragment>
 
             <div className={classes.root}>
-                <Grid container direction="row" justify="space-evenly">
+                <Grid container direction="row" alignItems="center" justify="center">
                     <Grid item>
-                    <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
+                        <ConsumerLineChart/>
                     </Grid>
                 </Grid>
 

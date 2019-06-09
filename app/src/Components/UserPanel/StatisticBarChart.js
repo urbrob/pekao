@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import Paper from '@material-ui/core/Paper'
 
@@ -28,12 +28,13 @@ const data = [
     },
 ];
 
-export default class Chart extends PureComponent {
+export default class StatisticBarChart extends PureComponent {
 
 
     render() {
         return (
-            <Paper style={{marginRight: "5%", marginLeft: "5%", marginTop: '5%'}}>
+            <Paper style={{marginTop: "8%"}}>
+                <h4>Chart title</h4>
                 <BarChart
                     width={500}
                     height={300}
@@ -42,13 +43,13 @@ export default class Chart extends PureComponent {
                         top: 5, right: 30, left: 20, bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="pv" fill="#8884d8" />
-                    <Bar dataKey="uv" fill="#82ca9d" />
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="name"/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Bar dataKey="pv" fill="#8884d8"/>
+                    <Bar dataKey="uv" fill="#82ca9d"/>
                     <h1 style={{marginRight: "10%"}}>Opis do wykresu bedzie tutaj bardzo kompleksowy suepr ekstra</h1>
                 </BarChart>
 

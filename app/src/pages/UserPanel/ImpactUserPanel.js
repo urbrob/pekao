@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import UserPanel from '../../Components/UserPanel/UserPanel'
 
-export class StatisticsUserPanel extends Component {
+export class ImpactUserPanel extends Component {
     render() {
         return (
             <React.Fragment>
                 <UserPanel
-                    content={'stats'}
-                    prompt={'See basic sales statistics'}
+                    content={'impact'}
+                    prompt={'Check your local market !'}
                 >
                 </UserPanel>
             </React.Fragment>
@@ -16,4 +16,4 @@ export class StatisticsUserPanel extends Component {
     }
 }
 
-export default StatisticsUserPanel;
+export default ImpactUserPanel;

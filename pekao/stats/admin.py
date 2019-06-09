@@ -5,6 +5,7 @@ from stats.models import Employer, Terminal, Payment, Raport, Product
 class EmployerAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     pass

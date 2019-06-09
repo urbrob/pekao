@@ -6,11 +6,14 @@ export class MainUserPanel extends Component {
         return (
             <React.Fragment>
                 <UserPanel
-                    content={'main'}>
+                    content={'main'}
+                    prompt={'Welcome Business Master !'}
+                >
                 </UserPanel>
             </React.Fragment>
 
         );
     }
 }
+
 export default MainUserPanel;

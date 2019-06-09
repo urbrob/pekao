@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import StatisticBarChart from "./StatisticBarChart"
 
 
 const styles = theme => ({
@@ -14,25 +13,16 @@ const styles = theme => ({
     },
 });
 
-function StatiscticsContent(props) {
+function ImpactContent(props) {
     const {classes} = props;
 
     return (
         <React.Fragment>
 
             <div className={classes.root}>
-                <Grid container direction="row" justify="space-evenly">
+                <Grid container direction="row">
                     <Grid item>
-                    <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
-                    </Grid>
-                    <Grid item>
-                        <StatisticBarChart/>
+
                     </Grid>
                 </Grid>
 
@@ -44,8 +34,8 @@ function StatiscticsContent(props) {
     );
 }
 
-StatiscticsContent.propTypes = {
+ImpactContent.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(StatiscticsContent);
+export default withStyles(styles)(ImpactContent);
