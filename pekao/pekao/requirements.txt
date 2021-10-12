@@ -32,7 +32,7 @@ jsonfield==2.0.2
 kombu==4.5.0
 numpy==1.16.3
 oauthlib==3.0.1
-opencv-python==4.1.0.25
+opencv-python==4.2.0.32
 pandas==0.24.2
 Pillow==6.0.0
 pipenv==2018.11.26
