@@ -30,7 +30,7 @@ jmespath==0.9.4
 joblib==0.13.2
 jsonfield==2.0.2
 kombu==4.5.0
-numpy==1.16.3
+numpy==1.22.0
 oauthlib==3.0.1
 opencv-python==4.1.0.25
 pandas==0.24.2
